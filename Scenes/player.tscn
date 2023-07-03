@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfpics6mi6sg1"]
+
+[ext_resource type="Texture2D" uid="uid://c6urrbcurpadf" path="res://PlayerSprites/rifle/idle/survivor-idle_rifle_0.png" id="1_xwwf3"]
+
+[node name="Player" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-0.566933, 1.8)
+scale = Vector2(1.04724, 1.1)
+polygon = PackedVector2Array(-113.09, -15.2727, 2.45113, -17.0909, 4.36091, 79.2727, -112, 79)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(925, 503)
+texture = ExtResource("1_xwwf3")
