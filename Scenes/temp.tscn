@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://jct1vegdegji"]
 
-[ext_resource type="Texture2D" uid="uid://c6urrbcurpadf" path="res://Sprites/Player/rifle/idle/survivor-idle_rifle_0.png" id="1_xd8ef"]
+[ext_resource type="Texture2D" uid="uid://c6urrbcurpadf" path="res://assets/sprites/player/rifle/idle/survivor-idle_rifle_0.png" id="1_kdo83"]
 
 [sub_resource type="TileSet" id="TileSet_y1s34"]
 tile_size = Vector2i(64, 64)
@@ -10,7 +10,7 @@ tile_size = Vector2i(64, 64)
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(10, -1)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_xd8ef")
+texture = ExtResource("1_kdo83")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_y1s34")
