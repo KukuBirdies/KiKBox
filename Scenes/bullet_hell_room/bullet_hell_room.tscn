@@ -1,3 +1,10 @@
-[gd_scene format=3 uid="uid://57ktiteg7hpr"]
+[gd_scene load_steps=2 format=3 uid="uid://57ktiteg7hpr"]
+
+[sub_resource type="TileSet" id="TileSet_lfv4m"]
+tile_size = Vector2i(64, 64)
 
 [node name="BulletHellRoom" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_lfv4m")
+format = 2
