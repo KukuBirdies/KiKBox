@@ -1,13 +1,13 @@
 [gd_scene load_steps=55 format=3 uid="uid://bfpics6mi6sg1"]
 
-[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_5tw8l"]
-[ext_resource type="Texture2D" uid="uid://h1ss88jmfaa5" path="res://assets/sprites/player/spritesheet.png" id="2_llmkt"]
-[ext_resource type="Texture2D" uid="uid://dabbjb68an0fu" path="res://assets/sprites/crosshairs/pistol_crosshair.png" id="5_g418k"]
-[ext_resource type="Script" path="res://scenes/player/crosshair.gd" id="5_t14na"]
-[ext_resource type="Texture2D" uid="uid://c0n2qidtkuxm4" path="res://assets/sprites/crosshairs/rifle_crosshair.png" id="6_dtc3h"]
-[ext_resource type="Texture2D" uid="uid://3gqbl6ccf3va" path="res://assets/sprites/crosshairs/shotgun_crosshair.png" id="7_ttnf5"]
-[ext_resource type="Texture2D" uid="uid://d2c133i8dl2us" path="res://assets/sprites/crosshairs/grenade_crosshair.png" id="8_u5vc1"]
-[ext_resource type="Texture2D" uid="uid://cwjgnruxqsc6m" path="res://assets/sprites/crosshairs/knife_crosshair.png" id="9_gjffb"]
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_k1bi6"]
+[ext_resource type="Texture2D" uid="uid://h1ss88jmfaa5" path="res://assets/sprites/player/spritesheet.png" id="2_kcfsv"]
+[ext_resource type="Script" path="res://scenes/player/crosshair.gd" id="3_7ywta"]
+[ext_resource type="Texture2D" uid="uid://dabbjb68an0fu" path="res://assets/sprites/crosshairs/pistol_crosshair.png" id="4_hoid7"]
+[ext_resource type="Texture2D" uid="uid://c0n2qidtkuxm4" path="res://assets/sprites/crosshairs/rifle_crosshair.png" id="5_u8jpt"]
+[ext_resource type="Texture2D" uid="uid://3gqbl6ccf3va" path="res://assets/sprites/crosshairs/shotgun_crosshair.png" id="6_wecpf"]
+[ext_resource type="Texture2D" uid="uid://d2c133i8dl2us" path="res://assets/sprites/crosshairs/grenade_crosshair.png" id="7_f5btg"]
+[ext_resource type="Texture2D" uid="uid://cwjgnruxqsc6m" path="res://assets/sprites/crosshairs/knife_crosshair.png" id="8_uilao"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hndbk"]
 radius = 2.0
@@ -603,7 +603,7 @@ states/pistol_move/position = Vector2(509, 100)
 states/pistol_shoot/node = SubResource("AnimationNodeAnimation_c32xm")
 states/pistol_shoot/position = Vector2(410, 170)
 transitions = ["Start", "pistol_idle", SubResource("AnimationNodeStateMachineTransition_e3qpg"), "pistol_idle", "pistol_move", SubResource("AnimationNodeStateMachineTransition_2pdb0"), "pistol_move", "pistol_shoot", SubResource("AnimationNodeStateMachineTransition_esp6v"), "pistol_move", "pistol_idle", SubResource("AnimationNodeStateMachineTransition_u5cod"), "pistol_shoot", "pistol_idle", SubResource("AnimationNodeStateMachineTransition_susoa"), "pistol_idle", "pistol_melee", SubResource("AnimationNodeStateMachineTransition_krrpl"), "pistol_move", "pistol_melee", SubResource("AnimationNodeStateMachineTransition_wja73"), "pistol_melee", "pistol_idle", SubResource("AnimationNodeStateMachineTransition_5ltum"), "pistol_idle", "pistol_shoot", SubResource("AnimationNodeStateMachineTransition_q41ra")]
-graph_offset = Vector2(-213, -34)
+graph_offset = Vector2(-32.3998, -6.7525)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ojwds"]
 
@@ -615,14 +615,14 @@ radius = 37.0
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
-script = ExtResource("1_5tw8l")
+script = ExtResource("1_k1bi6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_llmkt")
+texture = ExtResource("2_kcfsv")
 hframes = 20
 vframes = 26
-frame = 100
+frame = 103
 
 [node name="BodyCollisionShape" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(31, -28, 54, -12, 46, 27, -1, 36, -27, 24, -32, -21, -7, -41)
@@ -664,19 +664,19 @@ target_position = Vector2(6000, 0)
 
 [node name="Crosshair" type="Area2D" parent="."]
 z_index = 10
-script = ExtResource("5_t14na")
-pistol_crosshair = ExtResource("5_g418k")
-rifle_crosshair = ExtResource("6_dtc3h")
-shotgun_crosshair = ExtResource("7_ttnf5")
-grenade_crosshair = ExtResource("8_u5vc1")
-knife_crosshair = ExtResource("9_gjffb")
+script = ExtResource("3_7ywta")
+pistol_crosshair = ExtResource("4_hoid7")
+rifle_crosshair = ExtResource("5_u8jpt")
+shotgun_crosshair = ExtResource("6_wecpf")
+grenade_crosshair = ExtResource("7_f5btg")
+knife_crosshair = ExtResource("8_uilao")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Crosshair"]
 shape = SubResource("RectangleShape2D_eaxfv")
 
 [node name="Sprite2D" type="Sprite2D" parent="Crosshair"]
 scale = Vector2(0.05, 0.05)
-texture = ExtResource("5_g418k")
+texture = ExtResource("4_hoid7")
 
 [node name="MeleeHitbox" type="Area2D" parent="."]
 position = Vector2(40, 0)
