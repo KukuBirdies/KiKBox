@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvrhyetm8rgl8"]
+
+[ext_resource type="PackedScene" uid="uid://cfiweqmh8ggh3" path="res://scenes/player/player_interactable_room.tscn" id="1_duglj"]
+[ext_resource type="PackedScene" uid="uid://bfpics6mi6sg1" path="res://scenes/player/player.tscn" id="1_hk4v1"]
+
+[node name="PlayerInteractableRoom" instance=ExtResource("1_duglj")]
+
+[node name="Player" parent="." index="0" instance=ExtResource("1_hk4v1")]
+
+[node name="Enemy" type="CharacterBody2D" parent="." index="1"]
