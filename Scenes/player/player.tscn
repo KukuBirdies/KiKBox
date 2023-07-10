@@ -597,13 +597,13 @@ states/End/position = Vector2(841, 109)
 states/pistol_idle/node = SubResource("AnimationNodeAnimation_o3xg3")
 states/pistol_idle/position = Vector2(329, 100)
 states/pistol_melee/node = SubResource("AnimationNodeAnimation_0h6xw")
-states/pistol_melee/position = Vector2(410, 18)
+states/pistol_melee/position = Vector2(410.25, 18)
 states/pistol_move/node = SubResource("AnimationNodeAnimation_xqmwi")
 states/pistol_move/position = Vector2(509, 100)
 states/pistol_shoot/node = SubResource("AnimationNodeAnimation_c32xm")
 states/pistol_shoot/position = Vector2(410, 170)
 transitions = ["Start", "pistol_idle", SubResource("AnimationNodeStateMachineTransition_e3qpg"), "pistol_idle", "pistol_move", SubResource("AnimationNodeStateMachineTransition_2pdb0"), "pistol_move", "pistol_shoot", SubResource("AnimationNodeStateMachineTransition_esp6v"), "pistol_move", "pistol_idle", SubResource("AnimationNodeStateMachineTransition_u5cod"), "pistol_shoot", "pistol_idle", SubResource("AnimationNodeStateMachineTransition_susoa"), "pistol_idle", "pistol_melee", SubResource("AnimationNodeStateMachineTransition_krrpl"), "pistol_move", "pistol_melee", SubResource("AnimationNodeStateMachineTransition_wja73"), "pistol_melee", "pistol_idle", SubResource("AnimationNodeStateMachineTransition_5ltum"), "pistol_idle", "pistol_shoot", SubResource("AnimationNodeStateMachineTransition_q41ra")]
-graph_offset = Vector2(-32.3998, -6.7525)
+graph_offset = Vector2(-58.1997, -45.6776)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ojwds"]
 
@@ -613,7 +613,7 @@ size = Vector2(1, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_xuwgp"]
 radius = 37.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 motion_mode = 1
 script = ExtResource("1_k1bi6")
 
@@ -622,7 +622,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_kcfsv")
 hframes = 20
 vframes = 26
-frame = 103
+frame = 112
 
 [node name="BodyCollisionShape" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(31, -28, 54, -12, 46, 27, -1, 36, -27, 24, -32, -21, -7, -41)

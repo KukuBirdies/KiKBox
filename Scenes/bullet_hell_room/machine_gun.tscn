@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bful48gvovtj6"]
+
+[ext_resource type="Texture2D" uid="uid://ce2ir6bmpjac5" path="res://scenes/bullet_hell_room/assets_bullet_hell/MachineGun.png" id="1_lco4s"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_00o8q"]
+height = 48.0
+
+[node name="MachineGun" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7.5, 13)
+scale = Vector2(0.878, 1)
+texture = ExtResource("1_lco4s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 12)
+shape = SubResource("CapsuleShape2D_00o8q")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(8, 39)
+scale = Vector2(2, 2)
