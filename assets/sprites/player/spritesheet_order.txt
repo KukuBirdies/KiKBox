@@ -1,0 +1,32 @@
+Row	Name		No Frames.
+0	RifleIdle	20
+1	RifleMelee	15
+2	RifleMove	20
+3	RifleReload	20
+4	RifleShoot	3
+
+5	PistolIdle	20
+6	PistolMelee	15
+7	PistolMove	20
+8	PistolReload	15
+9	PistolShoot	3
+
+10	ShotgunIdle	20
+11	ShotgunMelee	15
+12	ShotgunMove	20
+13	ShotgunReload	20
+14	ShutgunShoot	3
+
+15	KnifeIdle	20
+16	KnifeMelee	15
+17	KnifeMove	20
+
+18	FlashlightIdle	20
+19	FlashlightMelee	15
+20	FlashlightMove	20
+
+21	FeetIdle	1
+22	FeetRun		20
+23	FeetStrafeL	20
+24	FeetStrafeR	20
+25	FeetWalk	20
