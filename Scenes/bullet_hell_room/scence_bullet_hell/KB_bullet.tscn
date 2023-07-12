@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ciwkut5n8nib3"]
+
+[ext_resource type="Script" path="res://scenes/bullet_hell_room/script_bullet_hell/KB_bullet.gd" id="1_d6bcd"]
+[ext_resource type="Texture2D" uid="uid://clupb22oqq1aq" path="res://scenes/bullet_hell_room/assets_bullet_hell/Kaboom_bullet.png" id="1_nf4mv"]
+[ext_resource type="PackedScene" uid="uid://dq1qwv1m8ep2g" path="res://scenes/bullet_hell_room/scence_bullet_hell/explosion.tscn" id="2_yosqi"]
+
+[node name="KB_bullet" type="Area2D"]
+script = ExtResource("1_d6bcd")
+explosion = ExtResource("2_yosqi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_nf4mv")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-39, -16, -6, -14, -23, -10, 2, -7, -51, -1, 3, 6, -23, 11, -7, 14, -38, 16, 12, 23, 33, 21, 45, 14, 49, 2, 49, -10, 40, -16, 27, -22, 10, -22, -39, -16)

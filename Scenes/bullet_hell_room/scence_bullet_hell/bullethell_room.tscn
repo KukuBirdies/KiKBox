@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://57ktiteg7hpr"]
+
+[ext_resource type="Script" path="res://scenes/bullet_hell_room/script_bullet_hell/bullet_hell_room.gd" id="1_mw2xj"]
+[ext_resource type="PackedScene" uid="uid://bfpics6mi6sg1" path="res://scenes/player/player.tscn" id="2_s1e0v"]
+[ext_resource type="PackedScene" uid="uid://bful48gvovtj6" path="res://scenes/bullet_hell_room/scence_bullet_hell/MG.tscn" id="3_55yjo"]
+[ext_resource type="PackedScene" uid="uid://cggaybg4xgkiy" path="res://scenes/bullet_hell_room/scence_bullet_hell/KaBoom.tscn" id="4_4aica"]
+[ext_resource type="PackedScene" uid="uid://5xicdf68rhx1" path="res://scenes/bullet_hell_room/scence_bullet_hell/rotator.tscn" id="5_wwa6x"]
+
+[node name="BulletHellRoom" type="Node2D"]
+script = ExtResource("1_mw2xj")
+
+[node name="Player" parent="." instance=ExtResource("2_s1e0v")]
+position = Vector2(993, 476)
+
+[node name="MachineGun" parent="." instance=ExtResource("3_55yjo")]
+position = Vector2(459, 447)
+scale = Vector2(1, 1)
+
+[node name="KaBoom" parent="." instance=ExtResource("4_4aica")]
+position = Vector2(725, 691)
+scale = Vector2(1, 1)
+
+[node name="Rotator" parent="." instance=ExtResource("5_wwa6x")]
+position = Vector2(644, 278)
