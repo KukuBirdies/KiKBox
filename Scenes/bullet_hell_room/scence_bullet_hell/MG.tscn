@@ -38,7 +38,6 @@ animations = [{
 size = Vector2(148.333, 64.6667)
 
 [node name="MachineGun" type="CharacterBody2D" groups=["Enemy"]]
-scale = Vector2(3, 3)
 script = ExtResource("1_efqkq")
 projectile = ExtResource("2_l4mw8")
 
@@ -56,11 +55,10 @@ position = Vector2(87.6667, 12.6667)
 scale = Vector2(0.5, 0.5)
 
 [node name="MG_bullet_2" type="Marker2D" parent="."]
-position = Vector2(89.3333, -12.6667)
+position = Vector2(126, -14)
 scale = Vector2(0.5, 0.5)
 
 [node name="shoot_timer" type="Timer" parent="."]
-wait_time = 0.5
 autostart = true
 
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]

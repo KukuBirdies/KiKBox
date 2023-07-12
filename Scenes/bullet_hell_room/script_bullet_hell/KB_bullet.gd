@@ -7,7 +7,7 @@ class_name Rocket
 
 var speed: float = 25.0 
 var spawned_from: Node
-var time_to_live: float = 5
+var time_to_live: float = 10
 
 
 func _ready() ->void: 

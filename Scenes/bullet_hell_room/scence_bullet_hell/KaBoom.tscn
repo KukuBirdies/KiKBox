@@ -46,7 +46,6 @@ animations = [{
 }]
 
 [node name="KaBoom" type="CharacterBody2D"]
-scale = Vector2(3, 3)
 script = ExtResource("1_fau0w")
 projectile = ExtResource("2_fcaww")
 

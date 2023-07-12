@@ -5,7 +5,7 @@ class_name MGProjectile
 var speed : float = 10.0
 var damage : float = 00 
 var spawned_from : Node
-var time_to_live: float = 5
+var time_to_live: float = 10
 
 func _ready() -> void: 
 	body_entered.connect(on_body_entered)
