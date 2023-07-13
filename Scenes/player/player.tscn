@@ -686,3 +686,5 @@ position = Vector2(40, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeHitbox"]
 shape = SubResource("CircleShape2D_xuwgp")
 debug_color = Color(0.996078, 0, 0.227451, 0.419608)
+
+[node name="Camera2D" type="Camera2D" parent="."]
