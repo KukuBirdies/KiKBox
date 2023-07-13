@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ce2ir6bmpjac5"
-path="res://.godot/imported/MGIdle.png-a1fbd7cbbae92a98f1228d5cb2bce1e7.ctex"
+path="res://.godot/imported/MGIdle.png-d16ca1ac05601f09eac88ded0224bad2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/bullet_hell_room/assets_bullet_hell/MGIdle.png"
-dest_files=["res://.godot/imported/MGIdle.png-a1fbd7cbbae92a98f1228d5cb2bce1e7.ctex"]
+source_file="res://Scenes/bullet_hell_room/assets_bullet_hell/MGIdle.png"
+dest_files=["res://.godot/imported/MGIdle.png-d16ca1ac05601f09eac88ded0224bad2.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cox5mcct7itgx"
-path="res://.godot/imported/Rotate_bullet.png-6deaf80e37590114881dba4ad7aedb40.ctex"
+path="res://.godot/imported/Rotate_bullet.png-666cdbad98557f881f0b356b93988e2c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/bullet_hell_room/assets_bullet_hell/Rotate_bullet.png"
-dest_files=["res://.godot/imported/Rotate_bullet.png-6deaf80e37590114881dba4ad7aedb40.ctex"]
+source_file="res://Scenes/bullet_hell_room/assets_bullet_hell/Rotate_bullet.png"
+dest_files=["res://.godot/imported/Rotate_bullet.png-666cdbad98557f881f0b356b93988e2c.ctex"]
 
 [params]
 

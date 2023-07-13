@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/bullet_hell_room/script_bullet_hell/bullet_hell_room.gd" id="1_mw2xj"]
 [ext_resource type="Texture2D" uid="uid://c27flcurn5cuo" path="res://assets/tiles/main_tilesheet.png" id="2_elb5r"]
-[ext_resource type="PackedScene" uid="uid://bfpics6mi6sg1" path="res://scenes/player/player.tscn" id="2_s1e0v"]
+[ext_resource type="PackedScene" uid="uid://bfpics6mi6sg1" path="res://Scenes/player/player.tscn" id="2_s1e0v"]
 [ext_resource type="PackedScene" uid="uid://bful48gvovtj6" path="res://scenes/bullet_hell_room/scence_bullet_hell/MG.tscn" id="3_55yjo"]
 [ext_resource type="PackedScene" uid="uid://cggaybg4xgkiy" path="res://scenes/bullet_hell_room/scence_bullet_hell/KaBoom.tscn" id="4_4aica"]
 [ext_resource type="PackedScene" uid="uid://5xicdf68rhx1" path="res://scenes/bullet_hell_room/scence_bullet_hell/rotator.tscn" id="5_wwa6x"]

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://clupb22oqq1aq"
-path="res://.godot/imported/Kaboom_bullet.png-091fe4ca30a8a17a6ef9e8c040033399.ctex"
+path="res://.godot/imported/Kaboom_bullet.png-1be4293630705e3c9f3aab879d5b02be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/bullet_hell_room/assets_bullet_hell/Kaboom_bullet.png"
-dest_files=["res://.godot/imported/Kaboom_bullet.png-091fe4ca30a8a17a6ef9e8c040033399.ctex"]
+source_file="res://Scenes/bullet_hell_room/assets_bullet_hell/Kaboom_bullet.png"
+dest_files=["res://.godot/imported/Kaboom_bullet.png-1be4293630705e3c9f3aab879d5b02be.ctex"]
 
 [params]
 
