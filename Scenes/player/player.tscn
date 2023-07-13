@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://bfpics6mi6sg1"]
+[gd_scene load_steps=54 format=3 uid="uid://bfpics6mi6sg1"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_k1bi6"]
 [ext_resource type="Texture2D" uid="uid://h1ss88jmfaa5" path="res://assets/sprites/player/spritesheet.png" id="2_kcfsv"]
@@ -295,6 +295,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_opnag"]
 resource_name = "pistol_shoot"
 length = 0.30001
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -607,13 +608,12 @@ graph_offset = Vector2(-58.1997, -45.6776)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ojwds"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eaxfv"]
-size = Vector2(1, 1)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_xuwgp"]
 radius = 37.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_k1bi6")
 
@@ -622,7 +622,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_kcfsv")
 hframes = 20
 vframes = 26
-frame = 112
+frame = 100
 
 [node name="BodyCollisionShape" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(31, -28, 54, -12, 46, 27, -1, 36, -27, 24, -32, -21, -7, -41)
@@ -661,22 +661,8 @@ position = Vector2(69, 21)
 
 [node name="RayCast2D" type="RayCast2D" parent="Barrel"]
 target_position = Vector2(6000, 0)
-
-[node name="Crosshair" type="Area2D" parent="."]
-z_index = 10
-script = ExtResource("3_7ywta")
-pistol_crosshair = ExtResource("4_hoid7")
-rifle_crosshair = ExtResource("5_u8jpt")
-shotgun_crosshair = ExtResource("6_wecpf")
-grenade_crosshair = ExtResource("7_f5btg")
-knife_crosshair = ExtResource("8_uilao")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Crosshair"]
-shape = SubResource("RectangleShape2D_eaxfv")
-
-[node name="Sprite2D" type="Sprite2D" parent="Crosshair"]
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("4_hoid7")
+collision_mask = 5
+collide_with_areas = true
 
 [node name="MeleeHitbox" type="Area2D" parent="."]
 position = Vector2(40, 0)
@@ -684,3 +670,14 @@ position = Vector2(40, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeHitbox"]
 shape = SubResource("CircleShape2D_xuwgp")
 debug_color = Color(0.996078, 0, 0.227451, 0.419608)
+
+[node name="Crosshair" type="Sprite2D" parent="."]
+z_index = 10
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("4_hoid7")
+script = ExtResource("3_7ywta")
+pistol_crosshair = ExtResource("4_hoid7")
+rifle_crosshair = ExtResource("5_u8jpt")
+shotgun_crosshair = ExtResource("6_wecpf")
+grenade_crosshair = ExtResource("7_f5btg")
+knife_crosshair = ExtResource("8_uilao")

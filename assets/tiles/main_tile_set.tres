@@ -1,9 +1,6 @@
-[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://t2ea77yycevn"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://t2ea77yycevn"]
 
 [ext_resource type="Texture2D" uid="uid://c27flcurn5cuo" path="res://assets/tiles/main_tilesheet.png" id="1_egrpt"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ypbka"]
-texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nw5hq"]
 texture = ExtResource("1_egrpt")
@@ -1663,5 +1660,5 @@ texture_region_size = Vector2i(64, 64)
 [resource]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_nw5hq")
-sources/0 = SubResource("TileSetAtlasSource_ypbka")

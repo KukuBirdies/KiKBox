@@ -1,10 +1,52 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvrhyetm8rgl8"]
+[gd_scene load_steps=10 format=3 uid="uid://ctm14i1s2fvon"]
 
-[ext_resource type="PackedScene" uid="uid://cfiweqmh8ggh3" path="res://scenes/player/player_interactable_room.tscn" id="1_duglj"]
+[ext_resource type="Script" path="res://scenes/player/sample_level.gd" id="1_8hbcn"]
 [ext_resource type="PackedScene" uid="uid://bfpics6mi6sg1" path="res://scenes/player/player.tscn" id="1_hk4v1"]
+[ext_resource type="TileSet" uid="uid://t2ea77yycevn" path="res://assets/tiles/main_tile_set.tres" id="3_fqntw"]
+[ext_resource type="Script" path="res://scenes/player/enemy.gd" id="4_8ksyf"]
+[ext_resource type="Texture2D" uid="uid://cur1siss1fcai" path="res://icon.svg" id="4_cc25h"]
+[ext_resource type="Script" path="res://scenes/player/hurtbox.gd" id="5_6bvb5"]
+[ext_resource type="Script" path="res://scenes/player/health_manager.gd" id="6_lv3gl"]
 
-[node name="PlayerInteractableRoom" instance=ExtResource("1_duglj")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sj2qq"]
+size = Vector2(60, 60)
 
-[node name="Player" parent="." index="0" instance=ExtResource("1_hk4v1")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6qg0"]
+size = Vector2(50, 50)
 
-[node name="Enemy" type="CharacterBody2D" parent="." index="1"]
+[node name="SampleLevel" type="Node2D"]
+script = ExtResource("1_8hbcn")
+
+[node name="Player" parent="." instance=ExtResource("1_hk4v1")]
+position = Vector2(329, 417)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("3_fqntw")
+format = 2
+layer_0/tile_data = PackedInt32Array(196625, 131073, 11, 720913, 393217, 10, 262161, 131073, 11, 327697, 131073, 11, 393233, 131073, 11, 458769, 131073, 11, 524305, 131073, 11, 589841, 131073, 11, 655377, 131073, 11)
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+position = Vector2(1042, 517)
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("4_8ksyf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_cc25h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+visible = false
+shape = SubResource("RectangleShape2D_sj2qq")
+
+[node name="HealthManager" type="Node2D" parent="Enemy"]
+script = ExtResource("6_lv3gl")
+
+[node name="Hurtbox" type="Area2D" parent="Enemy" node_paths=PackedStringArray("health_manager")]
+script = ExtResource("5_6bvb5")
+health_manager = NodePath("../HealthManager")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Hurtbox"]
+shape = SubResource("RectangleShape2D_p6qg0")
+
+[connection signal="received_damage" from="Enemy/Hurtbox" to="Enemy" method="_on_hurtbox_received_damage"]

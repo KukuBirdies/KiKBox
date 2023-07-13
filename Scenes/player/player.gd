@@ -14,7 +14,7 @@ const FRICTION = 0.2		# 1 means instant deceleration
 
 @onready var anim_state_machine = $AnimationPlayer/AnimationTree.get("parameters/playback")
 @onready var aim_from: Node2D = $AimFrom
-@onready var crosshair: Area2D = $Crosshair
+@onready var crosshair: Sprite2D = $Crosshair
 @onready var raycast: Node2D = $Barrel/RayCast2D
 
 var weapon := Global.Weapons.PISTOL
@@ -71,6 +71,3 @@ func weapon_ani_name(weapon: Global.Weapons, action: String):
 	# Weapons: pistol, rifle, shotgun, knife
 	var weapon_str: String = (Global.Weapons.keys()[weapon]).to_lower()
 	return "%s_%s" % [weapon_str, action]
-
-func hurt():
-	pass

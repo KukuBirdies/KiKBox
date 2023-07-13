@@ -1,4 +1,4 @@
-extends Area2D
+extends Sprite2D
 
 @export var pistol_crosshair : Texture
 @export var rifle_crosshair : Texture
@@ -6,7 +6,6 @@ extends Area2D
 @export var grenade_crosshair : Texture
 @export var knife_crosshair : Texture
 
-@onready var sprite2d : Sprite2D = $Sprite2D
 @onready var crosshairs = {
 	Global.Weapons.PISTOL: pistol_crosshair,
 	Global.Weapons.RIFLE: rifle_crosshair,
@@ -28,4 +27,4 @@ func _process(delta):
 
 func set_crosshair(weapon : Global.Weapons):
 	print("Changing crosshair to ", Global.Weapons.keys()[weapon], " using ", crosshairs[weapon])
-	sprite2d.set_texture(crosshairs[weapon])
+	set_texture(crosshairs[weapon])

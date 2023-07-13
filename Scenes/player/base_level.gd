@@ -14,7 +14,6 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	print(player)
 	connect_player_signals(player)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,7 +40,9 @@ func hit_scan_handler(ray_hit_info: RayHitInfo, Tracer: PackedScene, BulletImpac
 	add_child(tracer) 	# Frees after auto-playing
 	
 	# Bullet Impact
-	if ray_hit_info.collider:
+	if ray_hit_info.collider is Hurtbox:	# Entities can have their own bullet impact animation
+		ray_hit_info.collider.hurt()
+	elif ray_hit_info.collider:
 		var bullet_impact_fx := BulletImpactFX.instantiate()
 		bullet_impact_fx.global_position = ray_hit_info.to
 		bullet_impact_fx.global_rotation = ray_hit_info.normal.angle()
