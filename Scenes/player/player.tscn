@@ -614,6 +614,8 @@ size = Vector2(1, 1)
 radius = 37.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_k1bi6")
 
@@ -622,7 +624,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_kcfsv")
 hframes = 20
 vframes = 26
-frame = 112
+frame = 100
 
 [node name="BodyCollisionShape" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(31, -28, 54, -12, 46, 27, -1, 36, -27, 24, -32, -21, -7, -41)
