@@ -41,7 +41,7 @@ func hit_scan_handler(ray_hit_info: RayHitInfo, Tracer: PackedScene, BulletImpac
 	
 	# Bullet Impact
 	if ray_hit_info.collider is Hurtbox:	# Entities can have their own bullet impact animation
-		ray_hit_info.collider.hurt()
+		ray_hit_info.collider.hurt(0, Vector2.ZERO)
 	elif ray_hit_info.collider:
 		var bullet_impact_fx := BulletImpactFX.instantiate()
 		bullet_impact_fx.global_position = ray_hit_info.to
