@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 # Player interacts with the room (bullet/projectiles/etc) strictly through the
 # PlayerInteractableRoom it is in - All rooms that want to interact with the
 # player will inherit from player_interactable_room.tscn
@@ -26,7 +28,7 @@ func _ready():
 	print("Gun Offset (should be 21): ", player_gun_offset)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	aim()
 	# Movement
 	var direction = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
