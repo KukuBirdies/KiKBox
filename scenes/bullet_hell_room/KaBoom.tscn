@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://cggaybg4xgkiy"]
+
+[ext_resource type="Script" path="res://scenes/bullet_hell_room/scripts/KaBoom.gd" id="1_fau0w"]
+[ext_resource type="Texture2D" uid="uid://cbekjp2h2pl5o" path="res://assets/sprites/bullet_hell/KaBoomIdle.png" id="1_iphsy"]
+[ext_resource type="PackedScene" uid="uid://ciwkut5n8nib3" path="res://scenes/bullet_hell_room/KB_bullet.tscn" id="2_fcaww"]
+[ext_resource type="Texture2D" uid="uid://b61tsvwl16ydj" path="res://assets/sprites/bullet_hell/KaBoomFire.png" id="2_ycrxa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tusg"]
+atlas = ExtResource("1_iphsy")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7tl7"]
+atlas = ExtResource("2_ycrxa")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bc2hk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tusg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tusg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tusg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tusg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tusg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tusg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tusg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7tl7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="KaBoom" type="CharacterBody2D"]
+script = ExtResource("1_fau0w")
+projectile = ExtResource("2_fcaww")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = -1.5708
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_bc2hk")
+
+[node name="Barrel" type="Marker2D" parent="."]
+position = Vector2(157.333, 4.66667)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-131.333, -34.6667, -157.667, -0.333333, -146, 39.3333, -93.3333, 54.3333, -35, 47, -10.3333, 14, 146.667, 13, 143.667, -3, -11.3333, -2, -32.3333, -35, -64.3333, -46, -102, -45.3333)
+
+[node name="shoot_timer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
