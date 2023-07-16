@@ -3,9 +3,16 @@ extends Area2D
 
 signal received_damage(eff_dmg: int, dir: Vector2)
 
+@export var entity: Node2D
 @export var health_manager: HealthManager
 @export var DfltBulletHitFX: PackedScene = preload("res://scenes/bullets/dflt_enemy_bullet_hit_fx.tscn") # Test
 @export_range(0, 1) var armor: float = 0
+
+
+func _ready() -> void:
+	if entity == null: 
+		entity = get_parent()
+
 
 func hurt(dmg: int, dir: Vector2):
 	# dir: the global normalized direction of the bullet / projectile

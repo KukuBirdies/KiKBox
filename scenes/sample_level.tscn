@@ -194,6 +194,8 @@ libraries = {
 }
 
 [node name="Hurtbox" type="Area2D" parent="SampleEnemy" node_paths=PackedStringArray("health_manager")]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("7_5lcaf")
 health_manager = NodePath("../HealthManager")
 

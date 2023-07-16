@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bfpics6mi6sg1"]
+[gd_scene load_steps=56 format=3 uid="uid://bfpics6mi6sg1"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_k1bi6"]
 [ext_resource type="Texture2D" uid="uid://h1ss88jmfaa5" path="res://assets/sprites/player/spritesheet.png" id="2_kcfsv"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://3gqbl6ccf3va" path="res://assets/sprites/crosshairs/shotgun_crosshair.png" id="6_wecpf"]
 [ext_resource type="Texture2D" uid="uid://d2c133i8dl2us" path="res://assets/sprites/crosshairs/grenade_crosshair.png" id="7_f5btg"]
 [ext_resource type="Texture2D" uid="uid://cwjgnruxqsc6m" path="res://assets/sprites/crosshairs/knife_crosshair.png" id="8_uilao"]
+[ext_resource type="Script" path="res://components/hurtbox.gd" id="9_c4xan"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hndbk"]
 radius = 2.0
@@ -610,6 +611,9 @@ graph_offset = Vector2(-58.1997, -45.6776)
 [sub_resource type="CircleShape2D" id="CircleShape2D_xuwgp"]
 radius = 37.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3hmpe"]
+radius = 45.0
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 11
@@ -680,3 +684,12 @@ rifle_crosshair = ExtResource("5_u8jpt")
 shotgun_crosshair = ExtResource("6_wecpf")
 grenade_crosshair = ExtResource("7_f5btg")
 knife_crosshair = ExtResource("8_uilao")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("9_c4xan")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(6, 0)
+shape = SubResource("CircleShape2D_3hmpe")

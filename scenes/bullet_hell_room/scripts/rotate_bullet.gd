@@ -24,6 +24,7 @@ func handle_time_to_live() -> void:
 func _physics_process(_delta: float) -> void:
 	position += transform.x * speed
 
+
 func on_body_entered(body : Node2D) -> void: 
 	if body == spawned_from: 
 		return 
