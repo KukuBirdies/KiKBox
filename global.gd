@@ -1,18 +1,15 @@
-# Global "Singleton", see Project Setting > Autoload
-
 extends Node
+# Global "Singleton", see Project Setting > Autoload
 
 enum Weapons {PISTOL, RIFLE, SHOTGUN, GRENADE, KNIFE}
 var splash_weapons = [Weapons.GRENADE, Weapons.KNIFE]
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+var dmg = {
+	Weapons.PISTOL: 10,
+	Weapons.RIFLE: 20,
+	Weapons.SHOTGUN: 10,
+	Weapons.GRENADE: 50,
+	Weapons.KNIFE: 50
+}
 
 
 func pt_in_line_seg(line_pt1: Vector2, line_pt2: Vector2, pt: Vector2, epsilon: float=0.00001):

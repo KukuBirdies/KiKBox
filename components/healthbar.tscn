@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://ca5l5o5gsh3vg"]
+
+[ext_resource type="Script" path="res://components/healthbar.gd" id="1_crs2e"]
+[ext_resource type="Texture2D" uid="uid://8saqsbdlpohi" path="res://assets/sprites/healthbar/healthbar_under.png" id="1_tu3l1"]
+[ext_resource type="Texture2D" uid="uid://cejom4ja3pk5s" path="res://assets/sprites/healthbar/healthbar_over.png" id="2_op62i"]
+[ext_resource type="Texture2D" uid="uid://dxal6x6dvhd31" path="res://assets/sprites/healthbar/healthbar_progress.png" id="3_w6t8e"]
+
+[node name="Healthbar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_crs2e")
+
+[node name="LagBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -3.0
+offset_right = 32.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+texture_under = ExtResource("1_tu3l1")
+texture_progress = ExtResource("3_w6t8e")
+tint_under = Color(0.745098, 0.745098, 0.745098, 1)
+tint_over = Color(0, 0, 0, 1)
+tint_progress = Color(1, 0.545098, 0.576471, 1)
+
+[node name="TrueBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -3.0
+offset_right = 32.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+texture_over = ExtResource("2_op62i")
+texture_progress = ExtResource("3_w6t8e")
+tint_under = Color(0.745098, 0.745098, 0.745098, 1)
+tint_over = Color(0, 0, 0, 1)
+tint_progress = Color(0, 1, 0, 1)

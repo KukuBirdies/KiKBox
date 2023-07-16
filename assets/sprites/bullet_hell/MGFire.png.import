@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da7v24fdpp0mn"
-path="res://.godot/imported/health_manager_icon.svg-430b6ed984d87d3dd69c948b0333c3ae.ctex"
+uid="uid://dnk8fpc2cuffd"
+path="res://.godot/imported/MGFire.png-b40a8ba50dd534ee2c8342e6a32e1921.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://meta/health_manager_icon.svg"
-dest_files=["res://.godot/imported/health_manager_icon.svg-430b6ed984d87d3dd69c948b0333c3ae.ctex"]
+source_file="res://assets/sprites/bullet_hell/MGFire.png"
+dest_files=["res://.godot/imported/MGFire.png-b40a8ba50dd534ee2c8342e6a32e1921.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

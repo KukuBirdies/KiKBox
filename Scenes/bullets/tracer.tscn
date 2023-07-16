@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1ubb5ckwjwxl"]
+
+[ext_resource type="Texture2D" uid="uid://p2e4d8bmcpga" path="res://assets/sprites/player/bullets/tracers/tracer1.png" id="1_7152p"]
+[ext_resource type="Texture2D" uid="uid://ppnlju80lmnj" path="res://assets/sprites/player/bullets/tracers/tracer2.png" id="2_qtaiw"]
+[ext_resource type="Texture2D" uid="uid://dvdo0ihbet6rw" path="res://assets/sprites/player/bullets/tracers/tracer3.png" id="3_h7mfw"]
+[ext_resource type="Texture2D" uid="uid://bwyvevuujpjcd" path="res://assets/sprites/player/bullets/tracers/tracer4.png" id="4_g82iy"]
+[ext_resource type="Script" path="res://scenes/bullets/tracer.gd" id="5_2avua"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_qv4ax"]
+frames = 4
+pause = true
+frame_0/texture = ExtResource("1_7152p")
+frame_1/texture = ExtResource("2_qtaiw")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_h7mfw")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_g82iy")
+frame_3/duration = 1.0
+
+[node name="Line2D" type="Line2D"]
+texture_repeat = 2
+points = PackedVector2Array(0, 0, 1920, 0)
+texture = SubResource("AnimatedTexture_qv4ax")
+texture_mode = 1
+script = ExtResource("5_2avua")
