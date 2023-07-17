@@ -1,9 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bful48gvovtj6"]
+[gd_scene load_steps=13 format=3 uid="uid://bful48gvovtj6"]
 
 [ext_resource type="Script" path="res://scenes/bullet_hell_room/scripts/machine_gun.gd" id="1_efqkq"]
 [ext_resource type="Texture2D" uid="uid://dnk8fpc2cuffd" path="res://assets/sprites/bullet_hell/MGFire.png" id="2_c6l6w"]
 [ext_resource type="PackedScene" uid="uid://br4kudp7di0fa" path="res://scenes/bullet_hell_room/mg_projectile.tscn" id="2_l4mw8"]
 [ext_resource type="Texture2D" uid="uid://ce2ir6bmpjac5" path="res://assets/sprites/bullet_hell/MGIdle.png" id="3_nlqfl"]
+[ext_resource type="Script" path="res://components/hurtbox.gd" id="5_85gpu"]
+[ext_resource type="Script" path="res://components/health_manager.gd" id="6_s0a6i"]
+[ext_resource type="PackedScene" uid="uid://ca5l5o5gsh3vg" path="res://components/healthbar.tscn" id="7_rxadd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b03c2"]
 atlas = ExtResource("2_c6l6w")
@@ -38,6 +41,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kei10"]
 size = Vector2(148.333, 64.6667)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_376wy"]
+
 [node name="MachineGun" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 2
 collision_mask = 3
@@ -63,7 +68,23 @@ position = Vector2(126, -14)
 scale = Vector2(0.5, 0.5)
 
 [node name="shoot_timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.4
 autostart = true
+
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health_manager")]
+script = ExtResource("5_85gpu")
+health_manager = NodePath("../HealthManager")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+scale = Vector2(7.47309, 2.63912)
+shape = SubResource("RectangleShape2D_376wy")
+
+[node name="HealthManager" type="Node2D" parent="." node_paths=PackedStringArray("healthbar")]
+position = Vector2(2.08165e-12, -60)
+scale = Vector2(1.5, 1.512)
+script = ExtResource("6_s0a6i")
+healthbar = NodePath("Healthbar")
+
+[node name="Healthbar" parent="HealthManager" instance=ExtResource("7_rxadd")]
 
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]

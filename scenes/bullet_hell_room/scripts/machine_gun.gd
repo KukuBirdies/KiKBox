@@ -40,10 +40,9 @@ func shoot() -> void:
 
 
 func _on_shoot_timer_timeout() -> void:
-	if spam > 0: 
+	if spam < 8: 
 		shoot()
 		anim.play("fire")
-		spam -= 1
-	
-	if spam == 0: 
-		spam = 7 
+		if spam == 0: 
+			spam = 10
+	spam -= 1

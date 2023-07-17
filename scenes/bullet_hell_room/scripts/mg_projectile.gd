@@ -3,7 +3,7 @@ extends Area2D
 class_name MGProjectile
 
 var speed : float = 10.0
-var damage : float = 00 
+var damage : float = 10 
 var spawned_from : Node
 var time_to_live: float = 10
 

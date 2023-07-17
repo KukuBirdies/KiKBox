@@ -11,7 +11,6 @@ var time_to_live: float = 10
 
 
 func _ready() ->void: 
-	body_entered.connect(on_body_entered)
 	handle_time_to_live()
 
 
@@ -24,17 +23,22 @@ func handle_time_to_live() ->void:
 	ttl_timer.timeout.connect(func(): queue_free()) # what to do after timeout
 	ttl_timer.start() #start timer 
 
+
 # movements of projectile 
 func _physics_process(_delta: float) -> void:
 	position += transform.x * speed # transform.x is the relaitve x coodd
 
+
 # effect of projectile
 func on_body_entered(body: Node2D) ->void: 
-	if body == spawned_from: # this prevents the scenario where the projectile first hit a player
-		return 
-	
-	if body is Player: # Enemy is the class_namew
+	if body is TileMap: 
+		queue_free
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area is Hurtbox and area.entity is Player: 
 		queue_free()
 		var ex : Explosion = explosion.instantiate()
 		get_parent().call_deferred("add_child", ex) 
 		ex.global_transform = spawn_point.global_transform
+		
