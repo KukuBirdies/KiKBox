@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://xwtg5n7218hc"]
+
+[ext_resource type="Texture2D" uid="uid://cur1siss1fcai" path="res://icon.svg" id="1_0inch"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wywvq"]
+size = Vector2(128, 126.607)
+
+[node name="bullet_hell_door" type="CharacterBody2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.5, 2.98438)
+collision_mask = 7
+
+[node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("1_0inch")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wywvq")

@@ -6,10 +6,12 @@ class_name Rotator
 @onready var shoot_timer : Timer = $ShootTimer
 @onready var rotator : Node2D = $Rotate
 
-const rotate_speed: float = 80.0  # 0 / 50 / 80
+const rotate_speed: float = 100.0  # 0 / 50 / 80
 const shooter_time_wait_time: float = 0.2 # 0.15 / 0.2 /0.2
 const spawn_pointer_count: int = 3 # 8 / 6 /3
 const radius : float = 70
+@onready var anim = $AnimatedSprite2D
+var alive = 1 
 
 func _ready(): 
 	var step = 2 * PI / spawn_pointer_count
@@ -23,10 +25,13 @@ func _ready():
 	
 	shoot_timer.wait_time = shooter_time_wait_time
 	shoot_timer.start()
+	
+	anim.play("idle")
 
 func _process(delta: float) -> void:
-	var new_rotation = rotator.rotation_degrees + rotate_speed * delta
-	rotator.rotation_degrees = fmod(new_rotation,360) 
+	if alive: 
+		var new_rotation = rotator.rotation_degrees + rotate_speed * delta
+		rotator.rotation_degrees = fmod(new_rotation,360) 
 
 
 func _on_shoot_timer_timeout() -> void:
@@ -35,3 +40,10 @@ func _on_shoot_timer_timeout() -> void:
 		get_tree().root.add_child(bullet)
 		bullet.position = s.global_position 
 		bullet.rotation = s.global_rotation 
+
+
+
+func _on_health_manager_died() -> void:
+	shoot_timer.stop()
+	anim.play("died")
+	alive = 0

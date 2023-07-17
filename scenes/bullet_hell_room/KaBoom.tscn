@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cggaybg4xgkiy"]
+[gd_scene load_steps=13 format=3 uid="uid://cggaybg4xgkiy"]
 
 [ext_resource type="Script" path="res://scenes/bullet_hell_room/scripts/KaBoom.gd" id="1_fau0w"]
 [ext_resource type="Texture2D" uid="uid://cbekjp2h2pl5o" path="res://assets/sprites/bullet_hell/KaBoomIdle.png" id="1_iphsy"]
 [ext_resource type="PackedScene" uid="uid://ciwkut5n8nib3" path="res://scenes/bullet_hell_room/KB_bullet.tscn" id="2_fcaww"]
 [ext_resource type="Texture2D" uid="uid://b61tsvwl16ydj" path="res://assets/sprites/bullet_hell/KaBoomFire.png" id="2_ycrxa"]
+[ext_resource type="Texture2D" uid="uid://d05dm54v36egh" path="res://assets/sprites/bullet_hell/destroy_animation.png" id="3_1w0cn"]
+[ext_resource type="Texture2D" uid="uid://ltetqq6afw04" path="res://assets/sprites/bullet_hell/kaboom_destroy.png" id="3_12lhb"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="5_72kmt"]
 [ext_resource type="Script" path="res://components/health_manager.gd" id="6_jn5dp"]
 [ext_resource type="PackedScene" uid="uid://ca5l5o5gsh3vg" path="res://components/healthbar.tscn" id="7_4s565"]
@@ -20,21 +22,29 @@ region = Rect2(0, 0, 128, 128)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("3_1w0cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_12lhb")
+}],
+"loop": false,
+"name": &"died",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_r7tl7")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2tusg")
 }],
-"loop": false,
+"loop": true,
 "name": &"fire",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2tusg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r7tl7")
 }],
 "loop": false,
 "name": &"idle",
@@ -51,7 +61,7 @@ projectile = ExtResource("2_fcaww")
 rotation = -1.5708
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_bc2hk")
-animation = &"fire"
+animation = &"died"
 
 [node name="Barrel" type="Marker2D" parent="."]
 position = Vector2(157.333, 4.66667)
@@ -79,3 +89,4 @@ healthbar = NodePath("Healthbar")
 [node name="Healthbar" parent="HealthManager" instance=ExtResource("7_4s565")]
 
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="died" from="HealthManager" to="." method="_on_health_manager_died"]

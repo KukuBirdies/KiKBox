@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2ssn4hmahjq2"
-path="res://.godot/imported/destroy_animation_3.png-298fd525beed2ae41fe1fbb8321e470c.ctex"
+uid="uid://dynlqqtyik8ws"
+path="res://.godot/imported/rebound_bullet.png-9f5b443d196257d3c2157f226cae4fd1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bullet_hell/destroy_animation_3.png"
-dest_files=["res://.godot/imported/destroy_animation_3.png-298fd525beed2ae41fe1fbb8321e470c.ctex"]
+source_file="res://assets/sprites/bullet_hell/rebound_bullet.png"
+dest_files=["res://.godot/imported/rebound_bullet.png-9f5b443d196257d3c2157f226cae4fd1.ctex"]
 
 [params]
 

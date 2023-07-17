@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cjot7418wa1w8"]
 
-[ext_resource type="Script" path="res://scenes/bullet_hell_room/DestroyAnimation.gd" id="1_lxmr0"]
-[ext_resource type="Texture2D" uid="uid://jjohtslnmlae" path="res://assets/sprites/bullet_hell/destroy_animation_2.png" id="2_xpu40"]
-[ext_resource type="Texture2D" uid="uid://c2ssn4hmahjq2" path="res://assets/sprites/bullet_hell/destroy_animation_3.png" id="3_noatm"]
+[ext_resource type="Script" path="res://scenes/bullet_hell_room/scripts/DestroyAnimation.gd" id="1_lxmr0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/bullet_hell/destroy_animation_2.png" id="2_xpu40"]
+[ext_resource type="Texture2D" path="res://assets/sprites/bullet_hell/destroy_animation_3.png" id="3_noatm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_alma3"]
 animations = [{

@@ -5,9 +5,12 @@ class_name KaBoom
 
 @export var projectile: PackedScene
 @onready var barrel_one: Marker2D = $Barrel
+@onready var anim = $AnimatedSprite2D
+@onready var timer = $shoot_timer
 
 var target1: Player
-@onready var anim = $AnimatedSprite2D
+var alive = 1
+
 
 func _ready() -> void:
 	anim.play("idle")
@@ -22,7 +25,8 @@ func facing() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	facing()
+	if alive:
+		facing()
 
 
 func shoot() -> void: 
@@ -35,3 +39,10 @@ func shoot() -> void:
 func _on_shoot_timer_timeout() -> void:
 	shoot()
 	anim.play("fire")
+
+
+func _on_health_manager_died() -> void:
+	anim.play("died")
+	alive = 0
+	timer.stop()
+	

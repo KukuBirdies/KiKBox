@@ -1,11 +1,35 @@
-[gd_scene load_steps=7 format=3 uid="uid://5xicdf68rhx1"]
+[gd_scene load_steps=10 format=3 uid="uid://5xicdf68rhx1"]
 
 [ext_resource type="Texture2D" uid="uid://doei7mo6r85oj" path="res://assets/sprites/bullet_hell/Rotate.png" id="1_6yoxo"]
 [ext_resource type="Script" path="res://scenes/bullet_hell_room/scripts/rotator.gd" id="1_7hkgs"]
 [ext_resource type="PackedScene" uid="uid://bpvt3acbs5gjt" path="res://scenes/bullet_hell_room/rotate_bullet.tscn" id="2_s3gip"]
+[ext_resource type="Texture2D" uid="uid://cproe1mekrbnx" path="res://assets/sprites/bullet_hell/rotator_destroy.png" id="3_sukob"]
+[ext_resource type="Texture2D" uid="uid://d05dm54v36egh" path="res://assets/sprites/bullet_hell/destroy_animation.png" id="4_7yvhm"]
 [ext_resource type="Script" path="res://components/health_manager.gd" id="4_pi8jr"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="5_ud6b3"]
 [ext_resource type="PackedScene" uid="uid://ca5l5o5gsh3vg" path="res://components/healthbar.tscn" id="5_y4fx2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vfnte"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_7yvhm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sukob")
+}],
+"loop": false,
+"name": &"died",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6yoxo")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="Rotator" type="CharacterBody2D"]
 collision_layer = 2
@@ -13,10 +37,10 @@ collision_mask = 3
 script = ExtResource("1_7hkgs")
 projectile = ExtResource("2_s3gip")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2.08165e-12, 2.08165e-12)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
-texture = ExtResource("1_6yoxo")
+sprite_frames = SubResource("SpriteFrames_vfnte")
+animation = &"died"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -43,3 +67,4 @@ health_manager = NodePath("../HealthManager")
 polygon = PackedVector2Array(-40, -87, -69, -57, -63, 57, -39, 90, -1, 97, 41, 93, 65, 68, 71, -60, 43, -91)
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="died" from="HealthManager" to="." method="_on_health_manager_died"]

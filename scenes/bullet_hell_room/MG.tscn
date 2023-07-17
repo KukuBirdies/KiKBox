@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bful48gvovtj6"]
+[gd_scene load_steps=15 format=3 uid="uid://bful48gvovtj6"]
 
 [ext_resource type="Script" path="res://scenes/bullet_hell_room/scripts/machine_gun.gd" id="1_efqkq"]
 [ext_resource type="Texture2D" uid="uid://dnk8fpc2cuffd" path="res://assets/sprites/bullet_hell/MGFire.png" id="2_c6l6w"]
 [ext_resource type="PackedScene" uid="uid://br4kudp7di0fa" path="res://scenes/bullet_hell_room/mg_projectile.tscn" id="2_l4mw8"]
+[ext_resource type="Texture2D" uid="uid://d05dm54v36egh" path="res://assets/sprites/bullet_hell/destroy_animation.png" id="3_hyubv"]
 [ext_resource type="Texture2D" uid="uid://ce2ir6bmpjac5" path="res://assets/sprites/bullet_hell/MGIdle.png" id="3_nlqfl"]
+[ext_resource type="Texture2D" uid="uid://ckcmw8j248ypb" path="res://assets/sprites/bullet_hell/mg_destroy.png" id="3_vmt8u"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="5_85gpu"]
 [ext_resource type="Script" path="res://components/health_manager.gd" id="6_s0a6i"]
 [ext_resource type="PackedScene" uid="uid://ca5l5o5gsh3vg" path="res://components/healthbar.tscn" id="7_rxadd"]
@@ -18,6 +20,17 @@ region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f186i"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hyubv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vmt8u")
+}],
+"loop": false,
+"name": &"died",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b03c2")
@@ -53,7 +66,9 @@ projectile = ExtResource("2_l4mw8")
 rotation = -1.5708
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_f186i")
-animation = &"fire"
+animation = &"died"
+frame_progress = 1.0
+speed_scale = 0.9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.833336, -1)
@@ -84,7 +99,9 @@ position = Vector2(2.08165e-12, -60)
 scale = Vector2(1.5, 1.512)
 script = ExtResource("6_s0a6i")
 healthbar = NodePath("Healthbar")
+hp = 20
 
 [node name="Healthbar" parent="HealthManager" instance=ExtResource("7_rxadd")]
 
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="died" from="HealthManager" to="." method="_on_health_manager_died"]

@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 class_name MachineGun
 
 @export var projectile: PackedScene
@@ -8,9 +7,11 @@ class_name MachineGun
 @onready var barrel_one: Marker2D = $MG_bullet_1
 @onready var barrel_two: Marker2D = $MG_bullet_2
 @onready var anim = $AnimatedSprite2D
+@onready var timer = $shoot_timer
 
 var target1: Player
 var spam : int = 7
+var alive = 1
 
 
 func _ready() -> void:
@@ -25,7 +26,10 @@ func facing() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	facing()
+	if alive:
+		facing()
+	
+	
 
 
 func shoot() -> void: 
@@ -46,3 +50,10 @@ func _on_shoot_timer_timeout() -> void:
 		if spam == 0: 
 			spam = 10
 	spam -= 1
+
+
+func _on_health_manager_died() -> void:
+	anim.play("died")
+	alive = 0
+	timer.stop()
+	

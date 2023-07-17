@@ -2,13 +2,14 @@ extends Area2D
 
 class_name RotateProjectile
 
-var speed : float = 10.0
+var speed : float = 8.0
 var damage : float = 00 
-var time_to_live: float = 10
+var time_to_live: float = 1
 var rebound = 0
+@onready var anim = $AnimatedSprite2D
 
-func _ready() -> void: 
-	handle_time_to_live()
+func _ready() -> void:
+	anim.play("default")
 
 
 func handle_time_to_live() -> void:
@@ -28,12 +29,13 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is TileMap:
-		if rebound: 
-			queue_free() 
-		else: 
-			rebound = 1
-
+	if rebound: 
+		queue_free() 
+	else: 
+		rebound = 1
+		anim.play("rebound")
+		anim.scale = Vector2(0.25,0.25)
+		handle_time_to_live()
 
 
 func _on_area_entered(area: Area2D) -> void:
