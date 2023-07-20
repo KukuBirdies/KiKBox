@@ -9,8 +9,13 @@ extends Area2D
 func _ready():
 	connect("area_entered", _on_area_entered)
 
+func disable():
+	process_mode = Node.PROCESS_MODE_DISABLED
+
+func enable():
+	process_mode = Node.PROCESS_MODE_INHERIT
+
 func _on_area_entered(area):
-	print(area)
 	if area is Hurtbox:
 		var hurtbox: Hurtbox = area
 		# Recall: origin of damage is position of this node, draw the CollisionShape2D relative to that

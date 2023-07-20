@@ -1,0 +1,111 @@
+[gd_scene load_steps=10 format=3 uid="uid://p5hwu116kbr6"]
+
+[ext_resource type="Script" path="res://scenes/player/weapons/shotgun_config.gd" id="1_1bktq"]
+[ext_resource type="Texture2D" uid="uid://cgn6rnsyvalnp" path="res://assets/sprites/general/flame_particle.png" id="2_vi5r6"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bic0f"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_5k6ja"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.362963, 0.755556, 1)
+colors = PackedColorArray(1, 0.827451, 0.262745, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g0ey3"]
+gradient = SubResource("Gradient_5k6ja")
+
+[sub_resource type="Curve" id="Curve_0cakp"]
+_data = [Vector2(0, 0.509091), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3q5ys"]
+curve = SubResource("Curve_0cakp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_60c4s"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+spread = 30.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 500.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_max = 360.0
+scale_min = 0.1
+scale_curve = SubResource("CurveTexture_3q5ys")
+color_ramp = SubResource("GradientTexture1D_g0ey3")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hndbk"]
+radius = 2.0
+height = 24.0
+
+[node name="WeaponShotgun" type="Node2D"]
+script = ExtResource("1_1bktq")
+
+[node name="AimFrom" type="Marker2D" parent="."]
+editor_description = "A straight line from this point will intersect the mouse cursor for aiming"
+position = Vector2(0, 16)
+gizmo_extents = 30.0
+
+[node name="Barrel" type="Node2D" parent="."]
+position = Vector2(96, 16)
+
+[node name="RayCasts" type="Node2D" parent="Barrel"]
+
+[node name="RayCast2D" type="RayCast2D" parent="Barrel/RayCasts"]
+rotation = -0.122173
+scale = Vector2(1, 1)
+target_position = Vector2(6000, 0)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="RayCast2D2" type="RayCast2D" parent="Barrel/RayCasts"]
+rotation = -0.0523599
+target_position = Vector2(6000, 0)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="RayCast2D3" type="RayCast2D" parent="Barrel/RayCasts"]
+rotation = -0.0174533
+target_position = Vector2(6000, 0)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="RayCast2D4" type="RayCast2D" parent="Barrel/RayCasts"]
+target_position = Vector2(6000, 0)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="RayCast2D5" type="RayCast2D" parent="Barrel/RayCasts"]
+rotation = 0.0174533
+target_position = Vector2(6000, 0)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="RayCast2D6" type="RayCast2D" parent="Barrel/RayCasts"]
+rotation = 0.0523599
+target_position = Vector2(6000, 0)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="RayCast2D7" type="RayCast2D" parent="Barrel/RayCasts"]
+rotation = 0.122173
+scale = Vector2(1, 1)
+target_position = Vector2(6000, 0)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Barrel"]
+material = SubResource("CanvasItemMaterial_bic0f")
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_60c4s")
+texture = ExtResource("2_vi5r6")
+lifetime = 0.2
+one_shot = true
+explosiveness = 0.9
+
+[node name="WeaponCollisionShape" type="CollisionShape2D" parent="."]
+editor_description = "This is meant to be duplicated and used to add as a child to the Player's KinematicBody2D"
+position = Vector2(85, 16)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_hndbk")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bfpics6mi6sg1"]
+[gd_scene load_steps=88 format=3 uid="uid://bfpics6mi6sg1"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_k1bi6"]
 [ext_resource type="Texture2D" uid="uid://h1ss88jmfaa5" path="res://assets/sprites/player/spritesheet.png" id="2_kcfsv"]
@@ -10,10 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://cwjgnruxqsc6m" path="res://assets/sprites/crosshairs/knife_crosshair.png" id="8_uilao"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="9_c4xan"]
 [ext_resource type="Script" path="res://components/hitbox.gd" id="10_8gh6v"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hndbk"]
-radius = 2.0
-height = 24.0
+[ext_resource type="Script" path="res://scenes/player/weapon_config.gd" id="11_ndiql"]
+[ext_resource type="PackedScene" uid="uid://f22i0xu5eyci" path="res://scenes/player/weapons/pistol_config.tscn" id="12_omhdm"]
+[ext_resource type="PackedScene" uid="uid://bdv5ol1ikml6p" path="res://scenes/player/weapons/rifle_config.tscn" id="13_hw44u"]
+[ext_resource type="PackedScene" uid="uid://p5hwu116kbr6" path="res://scenes/player/weapons/shotgun_config.tscn" id="14_oxjmf"]
 
 [sub_resource type="Animation" id="Animation_hcoo8"]
 length = 0.001
@@ -259,6 +259,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 6), Vector2i(1, 6), Vector2i(2, 6), Vector2i(3, 6), Vector2i(4, 6), Vector2i(5, 6), Vector2i(6, 6), Vector2i(7, 6), Vector2i(8, 6), Vector2i(9, 6), Vector2i(10, 6), Vector2i(11, 6), Vector2i(12, 6), Vector2i(13, 6), Vector2i(14, 6)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeleeHitbox")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.28, 0.32),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"enable"
+}, {
+"args": [],
+"method": &"disable"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_q2gdf"]
 resource_name = "pistol_move"
@@ -312,7 +329,7 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("WeaponConfig")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -320,7 +337,7 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"attack"
+"method": &"fire"
 }]
 }
 
@@ -397,7 +414,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_aalt8"]
 resource_name = "rifle_shoot"
-length = 0.30001
+length = 0.200007
+step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -405,15 +423,15 @@ tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4)]
+"values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("WeaponConfig")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -421,7 +439,7 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"attack"
+"method": &"fire"
 }]
 }
 
@@ -498,7 +516,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_obg8o"]
 resource_name = "shotgun_shoot"
-length = 0.30001
+length = 0.60001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -506,15 +524,15 @@ tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 14), Vector2i(1, 14), Vector2i(2, 14), Vector2i(3, 4)]
+"values": [Vector2i(0, 14), Vector2i(1, 14), Vector2i(2, 14)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("WeaponConfig")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -522,7 +540,7 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"attack"
+"method": &"fire"
 }]
 }
 
@@ -569,6 +587,30 @@ animation = &"pistol_move"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c32xm"]
 animation = &"pistol_shoot"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5b7fj"]
+animation = &"rifle_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r5cvc"]
+animation = &"rifle_melee"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7brju"]
+animation = &"rifle_move"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t1qy7"]
+animation = &"rifle_shoot"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6qopy"]
+animation = &"shotgun_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r80ar"]
+animation = &"shotgun_melee"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l8m6l"]
+animation = &"shotgun_move"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oqcdv"]
+animation = &"shotgun_shoot"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e3qpg"]
 advance_mode = 2
 
@@ -594,8 +636,57 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q41ra"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wnc2k"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nanl3"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qpg3u"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_okion"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x01ms"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c02w6"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gjqyt"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_upn3x"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2cwb1"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3j0t3"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jno07"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3f024"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_psv2b"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qnrgn"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s8edq"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6wgpx"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kep2f"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rdtsc"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bp3sj"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uiixi"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fqkoo"]
-states/End/position = Vector2(841, 109)
+states/End/position = Vector2(841, 108)
+states/Start/position = Vector2(299, 47)
 states/pistol_idle/node = SubResource("AnimationNodeAnimation_o3xg3")
 states/pistol_idle/position = Vector2(329, 100)
 states/pistol_melee/node = SubResource("AnimationNodeAnimation_0h6xw")
@@ -604,8 +695,24 @@ states/pistol_move/node = SubResource("AnimationNodeAnimation_xqmwi")
 states/pistol_move/position = Vector2(509, 100)
 states/pistol_shoot/node = SubResource("AnimationNodeAnimation_c32xm")
 states/pistol_shoot/position = Vector2(410, 170)
-transitions = ["Start", "pistol_idle", SubResource("AnimationNodeStateMachineTransition_e3qpg"), "pistol_idle", "pistol_move", SubResource("AnimationNodeStateMachineTransition_2pdb0"), "pistol_move", "pistol_shoot", SubResource("AnimationNodeStateMachineTransition_esp6v"), "pistol_move", "pistol_idle", SubResource("AnimationNodeStateMachineTransition_u5cod"), "pistol_shoot", "pistol_idle", SubResource("AnimationNodeStateMachineTransition_susoa"), "pistol_idle", "pistol_melee", SubResource("AnimationNodeStateMachineTransition_krrpl"), "pistol_move", "pistol_melee", SubResource("AnimationNodeStateMachineTransition_wja73"), "pistol_melee", "pistol_idle", SubResource("AnimationNodeStateMachineTransition_5ltum"), "pistol_idle", "pistol_shoot", SubResource("AnimationNodeStateMachineTransition_q41ra")]
-graph_offset = Vector2(-58.1997, -45.6776)
+states/rifle_idle/node = SubResource("AnimationNodeAnimation_5b7fj")
+states/rifle_idle/position = Vector2(329, 233.322)
+states/rifle_melee/node = SubResource("AnimationNodeAnimation_r5cvc")
+states/rifle_melee/position = Vector2(466.8, 287.322)
+states/rifle_move/node = SubResource("AnimationNodeAnimation_7brju")
+states/rifle_move/position = Vector2(329, 342.322)
+states/rifle_shoot/node = SubResource("AnimationNodeAnimation_t1qy7")
+states/rifle_shoot/position = Vector2(201.8, 287.322)
+states/shotgun_idle/node = SubResource("AnimationNodeAnimation_6qopy")
+states/shotgun_idle/position = Vector2(30.8003, 170)
+states/shotgun_melee/node = SubResource("AnimationNodeAnimation_r80ar")
+states/shotgun_melee/position = Vector2(164.8, 219.322)
+states/shotgun_move/node = SubResource("AnimationNodeAnimation_l8m6l")
+states/shotgun_move/position = Vector2(30.8003, 301.322)
+states/shotgun_shoot/node = SubResource("AnimationNodeAnimation_oqcdv")
+states/shotgun_shoot/position = Vector2(-98.1997, 219.322)
+transitions = ["Start", "pistol_idle", SubResource("AnimationNodeStateMachineTransition_e3qpg"), "pistol_idle", "pistol_move", SubResource("AnimationNodeStateMachineTransition_2pdb0"), "pistol_move", "pistol_shoot", SubResource("AnimationNodeStateMachineTransition_esp6v"), "pistol_move", "pistol_idle", SubResource("AnimationNodeStateMachineTransition_u5cod"), "pistol_shoot", "pistol_idle", SubResource("AnimationNodeStateMachineTransition_susoa"), "pistol_idle", "pistol_melee", SubResource("AnimationNodeStateMachineTransition_krrpl"), "pistol_move", "pistol_melee", SubResource("AnimationNodeStateMachineTransition_wja73"), "pistol_melee", "pistol_idle", SubResource("AnimationNodeStateMachineTransition_5ltum"), "pistol_idle", "pistol_shoot", SubResource("AnimationNodeStateMachineTransition_q41ra"), "rifle_idle", "rifle_melee", SubResource("AnimationNodeStateMachineTransition_wnc2k"), "rifle_idle", "rifle_move", SubResource("AnimationNodeStateMachineTransition_nanl3"), "rifle_move", "rifle_idle", SubResource("AnimationNodeStateMachineTransition_qpg3u"), "rifle_melee", "rifle_idle", SubResource("AnimationNodeStateMachineTransition_okion"), "rifle_move", "rifle_melee", SubResource("AnimationNodeStateMachineTransition_x01ms"), "rifle_move", "rifle_shoot", SubResource("AnimationNodeStateMachineTransition_c02w6"), "rifle_shoot", "rifle_idle", SubResource("AnimationNodeStateMachineTransition_gjqyt"), "rifle_idle", "rifle_shoot", SubResource("AnimationNodeStateMachineTransition_upn3x"), "pistol_idle", "rifle_idle", SubResource("AnimationNodeStateMachineTransition_2cwb1"), "rifle_idle", "pistol_idle", SubResource("AnimationNodeStateMachineTransition_3j0t3"), "pistol_idle", "shotgun_idle", SubResource("AnimationNodeStateMachineTransition_jno07"), "shotgun_idle", "pistol_idle", SubResource("AnimationNodeStateMachineTransition_3f024"), "shotgun_idle", "shotgun_melee", SubResource("AnimationNodeStateMachineTransition_psv2b"), "shotgun_melee", "shotgun_idle", SubResource("AnimationNodeStateMachineTransition_qnrgn"), "shotgun_idle", "shotgun_move", SubResource("AnimationNodeStateMachineTransition_s8edq"), "shotgun_move", "shotgun_idle", SubResource("AnimationNodeStateMachineTransition_6wgpx"), "shotgun_move", "shotgun_melee", SubResource("AnimationNodeStateMachineTransition_kep2f"), "shotgun_move", "shotgun_shoot", SubResource("AnimationNodeStateMachineTransition_rdtsc"), "shotgun_idle", "shotgun_shoot", SubResource("AnimationNodeStateMachineTransition_bp3sj"), "shotgun_shoot", "shotgun_idle", SubResource("AnimationNodeStateMachineTransition_uiixi")]
+graph_offset = Vector2(-343.2, -5.6776)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ojwds"]
 
@@ -631,18 +738,6 @@ frame = 100
 [node name="BodyCollisionShape" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(31, -28, 54, -12, 46, 27, -1, 36, -27, 24, -32, -21, -7, -41)
 
-[node name="RifleCollisionShape" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(75, 16)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_hndbk")
-disabled = true
-
-[node name="PistolCollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(58, 21)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_hndbk")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_tvyy3")
@@ -654,19 +749,6 @@ anim_player = NodePath("..")
 active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_ojwds")
 parameters/conditions/is_moving = false
-
-[node name="AimFrom" type="Marker2D" parent="."]
-editor_description = "A straight line from this point will intersect the mouse cursor for aiming"
-position = Vector2(0, 21)
-gizmo_extents = 30.0
-
-[node name="Barrel" type="Node2D" parent="."]
-position = Vector2(69, 21)
-
-[node name="RayCast2D" type="RayCast2D" parent="Barrel"]
-target_position = Vector2(6000, 0)
-collision_mask = 5
-collide_with_areas = true
 
 [node name="Crosshair" type="Sprite2D" parent="."]
 z_index = 10
@@ -688,12 +770,21 @@ script = ExtResource("9_c4xan")
 position = Vector2(6, 0)
 shape = SubResource("CircleShape2D_3hmpe")
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="MeleeHitbox" type="Area2D" parent="."]
+process_mode = 4
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("10_8gh6v")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeHitbox"]
 position = Vector2(38, 0)
 shape = SubResource("CircleShape2D_m26yl")
 debug_color = Color(1, 0.462745, 0.513726, 0.207843)
+
+[node name="WeaponConfig" type="Node2D" parent="."]
+script = ExtResource("11_ndiql")
+Pistol = ExtResource("12_omhdm")
+Rifle = ExtResource("13_hw44u")
+Shotgun = ExtResource("14_oxjmf")
+
+[connection signal="ray_fired" from="WeaponConfig" to="." method="_on_weapon_config_ray_fired"]
