@@ -84,7 +84,6 @@ scale = Vector2(0.5, 0.5)
 
 [node name="shoot_timer" type="Timer" parent="."]
 wait_time = 0.4
-autostart = true
 
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health_manager")]
 script = ExtResource("5_85gpu")
