@@ -27,7 +27,6 @@ func hurt_entities(entities: Array):
 	
 func hit_scan_attack(ray_hit_info: RayHitInfo, dmg: int, Tracer: PackedScene, BulletHitFX: PackedScene = BulletHitFX):
 	# Renders tracer and bullet impact animation.
-	ray_hit_info.print_info()
 	# Tracer
 	var tracer: Line2D = Tracer.instantiate()
 	# Sets the end of the tracer line
@@ -52,10 +51,9 @@ func hit_scan_attack(ray_hit_info: RayHitInfo, dmg: int, Tracer: PackedScene, Bu
 
 # Signal Handling from Player
 func connect_player_signals(player):
-	player.connect("shot_fired", _on_player_shot_fired)
+	player.connect("ray_fired", _on_player_ray_fired)
 
-func _on_player_shot_fired(weapon: Global.Weapons, ray_hit_info: RayHitInfo):
+func _on_player_ray_fired(dmg: int, ray_hit_info: RayHitInfo):
 	# ray_hit_info: The ray cast hit info signalled by the player
-	print("Level: Player Fired")
-	hit_scan_attack(ray_hit_info, Global.dmg[weapon], Tracer, BulletHitFX)
+	hit_scan_attack(ray_hit_info, dmg, Tracer, BulletHitFX)
 	

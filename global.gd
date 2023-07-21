@@ -1,14 +1,15 @@
 extends Node
 # Global "Singleton", see Project Setting > Autoload
 
-enum Weapons {PISTOL, RIFLE, SHOTGUN, GRENADE, KNIFE}
+enum Weapons {PISTOL, RIFLE, SHOTGUN, GRENADE, KNIFE, GUN_MELEE}
 var splash_weapons = [Weapons.GRENADE, Weapons.KNIFE]
 var dmg = {
 	Weapons.PISTOL: 10,
 	Weapons.RIFLE: 20,
 	Weapons.SHOTGUN: 10,
 	Weapons.GRENADE: 50,
-	Weapons.KNIFE: 50
+	Weapons.KNIFE: 50,
+	Weapons.GUN_MELEE: 25
 }
 
 

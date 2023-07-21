@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ctm14i1s2fvon"]
+[gd_scene load_steps=20 format=3 uid="uid://ctm14i1s2fvon"]
 
 [ext_resource type="Script" path="res://scenes/sample_level.gd" id="1_a5r52"]
 [ext_resource type="PackedScene" uid="uid://bfpics6mi6sg1" path="res://scenes/player/player.tscn" id="2_28wok"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ca5l5o5gsh3vg" path="res://components/healthbar.tscn" id="7_3q3t2"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="7_5lcaf"]
 [ext_resource type="Script" path="res://components/health_manager.gd" id="7_yyjap"]
+[ext_resource type="Script" path="res://scenes/weapon_changer.gd" id="9_blu08"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sj2qq"]
 size = Vector2(60, 60)
@@ -158,6 +159,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppmpl"]
 size = Vector2(64, 64)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y7572"]
+size = Vector2(120, 122)
+
 [node name="SampleLevel" type="Node2D"]
 script = ExtResource("1_a5r52")
 
@@ -210,5 +214,19 @@ healthbar = NodePath("Healthbar")
 offset_top = -49.0
 offset_bottom = -49.0
 
+[node name="WeaponChanger" type="Area2D" parent="."]
+position = Vector2(754, 730)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("9_blu08")
+
+[node name="Sprite2D" type="Sprite2D" parent="WeaponChanger"]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("5_pg0eo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponChanger"]
+shape = SubResource("RectangleShape2D_y7572")
+
 [connection signal="received_damage" from="SampleEnemy/Hurtbox" to="SampleEnemy" method="_on_hurtbox_received_damage"]
 [connection signal="died" from="SampleEnemy/HealthManager" to="SampleEnemy" method="_on_health_manager_died"]
+[connection signal="area_entered" from="WeaponChanger" to="WeaponChanger" method="_on_area_entered"]
