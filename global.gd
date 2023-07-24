@@ -31,3 +31,31 @@ func pt_in_line_seg(line_pt1: Vector2, line_pt2: Vector2, pt: Vector2, epsilon: 
 		return min(line_pt1.y, line_pt2.y) <= pt.y and pt.y <= max(line_pt1.y, line_pt2.y)
 	else:
 		return min(line_pt1.x, line_pt2.x) <= pt.x and pt.x <= max(line_pt1.x, line_pt2.x)
+
+
+# Gradually changes a value towards a desired goal over time.
+func smooth_damp(current: float, target: float, REFcurrentVelocity: float, smoothTime: float, maxSpeed: float, deltaTime: float):
+	# Based on Game Programming Gems 4 Chapter 1.10
+	smoothTime = max(0.0001, smoothTime)
+	var omega: float = 2.0 / smoothTime
+
+	var x: float = omega * deltaTime
+	var exp: float = 1.0 / (1.0 + x + 0.48 * x * x + 0.235 * x * x * x)
+	var change: float = current - target
+	var originalTo: float = target
+
+	# Clamp maximum speed
+	var maxChange: float = maxSpeed * smoothTime
+	change = clamp(change, -maxChange, maxChange)
+	target = current - change
+
+	var temp: float = (REFcurrentVelocity + omega * change) * deltaTime
+	REFcurrentVelocity = (REFcurrentVelocity - omega * temp) * exp
+	var output: float = target + (change + temp) * exp
+
+	# Prevent overshooting
+	if (originalTo - current > 0.0) == (output > originalTo):
+		output = originalTo
+		REFcurrentVelocity = (output - originalTo) / deltaTime
+	return [output, REFcurrentVelocity]
+

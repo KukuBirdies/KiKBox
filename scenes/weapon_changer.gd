@@ -9,4 +9,4 @@ func _on_area_entered(area):
 		if hurtbox.entity is Player:
 			var player: Player = hurtbox.entity
 			print("CHANGE WEAPON")
-			player.equip_weapon(Global.Weapons.SHOTGUN)
+			player.equip_weapon(Global.Weapons.RIFLE)

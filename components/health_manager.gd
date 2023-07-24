@@ -17,7 +17,6 @@ func _ready():
 		healthbar.init_health(max_hp)
 
 func take_dmg(dmg: int):
-	print("{owner} taking {dmg} damage".format({"owner": owner, "dmg": dmg}))
 	hp -= dmg
 	if hp <= 0:
 		emit_signal("died")

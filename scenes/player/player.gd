@@ -9,34 +9,52 @@ extends CharacterBody2D
 
 signal ray_fired(dmg: int, ray_hit_info: RayHitInfo)
 
-const MAXSPEED = 300.0
-const ACCELERATION = 0.4	# 1 means instant acceleration
-const FRICTION = 0.2		# 1 means instant deceleration
+const MAXSPEED := 450.0
+const ACCELERATION := 0.2
+const FRICTION := 0.1
+const KNOCKBACK_FRIC := 0.08
 
-var player_gun_offset: int
 var weapon_collision_shape: CollisionShape2D
+
+# Movement Variables
+@export var _movement := Vector2.ZERO
+@export var _mvmt_interpolate_t := 0.0			# [0,1]: the interpolation "weight" (the x position of an ease() curve)
+var _mvmt_factor := 1.0			# Modified through mvmt_factor_lerp()
+var _mvmt_factor_target := 1.0	# Modified through mvmt_factor_lerp()
+var _mvmt_factor_weight := 1.0	# Modified through mvmt_factor_lerp()
+var _knockback := Vector2.ZERO
 
 @onready var weapon_config = $WeaponConfig
 @onready var anim_state_machine = $AnimationPlayer/AnimationTree.get("parameters/playback")
 @onready var crosshair: Sprite2D = $Crosshair
 
-func _ready():	
+func _ready():
 	equip_weapon(Global.Weapons.PISTOL)
 	_init_hitboxes_dmg()
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	aim()
 	# Movement
-	var direction = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
+	var direction := Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
 	direction = direction.normalized()
 
 	if direction:
-		velocity = velocity.lerp(direction * MAXSPEED, ACCELERATION)	# Exponentially accelerate
+		_movement = lerp(_movement, direction * MAXSPEED, 0.5)
 		anim_state_machine.travel(weapon_ani_name(weapon_config.weapon_name, "move"))
 	else:
-		velocity = velocity.lerp(Vector2.ZERO, FRICTION)	# Exponentially decelerate
+		_movement = lerp(_movement, Vector2.ZERO, FRICTION)
+		#_movement = _movement.lerp(Vector2.ZERO, FRICTION)	# Exponentially decelerate
 		anim_state_machine.travel(weapon_ani_name(weapon_config.weapon_name, "idle"))
+	_mvmt_interpolate_t = clamp(_mvmt_interpolate_t, 0, 1)
 	
+	# Movement Factor
+	_mvmt_factor = lerp(_mvmt_factor, _mvmt_factor_target, _mvmt_factor_weight)
+	_movement *= _mvmt_factor
+	
+	# Knockback
+	_knockback = _knockback.lerp(Vector2.ZERO, KNOCKBACK_FRIC)
+	
+	# Action
 	if Input.is_action_just_pressed("melee"):
 		melee()
 	elif Input.is_action_just_pressed("attack"):
@@ -45,11 +63,24 @@ func _physics_process(_delta):
 		# Fire rate and action is handled in AnimationPlayer :D
 		anim_state_machine.travel(weapon_ani_name(weapon_config.weapon_name, "shoot"))
 	
-	#print("Currently Playing: ", anim_state_machine.get_current_node())
+	# DEBUG: Changing Weapons
+	if Input.is_key_pressed(KEY_1):
+		equip_weapon(Global.Weapons.RIFLE)
+	elif Input.is_key_pressed(KEY_2):
+		equip_weapon(Global.Weapons.SHOTGUN)
+	elif Input.is_key_pressed(KEY_0):
+		equip_weapon(Global.Weapons.PISTOL)
 	
 	for raycast in weapon_config.raycasts:
 		raycast.force_raycast_update()	# Effects are amplified when aiming while moving
+
+	velocity = _movement + _knockback
 	move_and_slide()	# Intrinsically handles delta
+
+func mvmt_factor_lerp(target: float, weight := 1.0):
+	print("In with ", target, "\t", weight)
+	_mvmt_factor_target = target	# Modified through mvmt_factor_lerp()
+	_mvmt_factor_weight = weight	# Modified through mvmt_factor_lerp()
 
 func aim():
 	# Rotates player such that gun aims at crosshair
@@ -75,12 +106,15 @@ func equip_weapon(weapon: Global.Weapons):
 	weapon_collision_shape = weapon_config.weapon_shape.duplicate()
 	weapon_collision_shape.name = "WeaponCollisionShape"
 	call_deferred("add_child", weapon_collision_shape)	# Adds child only when not calculating Physics
-	print(weapon_config.weapon_name)
+
+func knockback(speed:float, rel_dir: Vector2):
+	_knockback += rel_dir.normalized() * speed
 
 func _init_hitboxes_dmg():
 	$MeleeHitbox.dmg = Global.dmg[Global.Weapons.GUN_MELEE]
 
-
 func _on_weapon_config_ray_fired(dmg, ray_hit_info):
 	# Pass-through to BaseLevel
 	emit_signal("ray_fired", dmg, ray_hit_info)
+
+

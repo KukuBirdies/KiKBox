@@ -8,8 +8,8 @@ blend_mode = 1
 
 [sub_resource type="Gradient" id="Gradient_5k6ja"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.362963, 0.755556, 1)
-colors = PackedColorArray(1, 0.827451, 0.262745, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0)
+offsets = PackedFloat32Array(0, 0.362963, 0.474074, 0.718518, 1)
+colors = PackedColorArray(1, 0.827451, 0.262745, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0.340339, 0.340339, 0.340339, 0.478431, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_g0ey3"]
 gradient = SubResource("Gradient_5k6ja")
@@ -26,10 +26,12 @@ lifetime_randomness = 0.3
 particle_flag_disable_z = true
 spread = 30.0
 gravity = Vector3(0, 0, 0)
-initial_velocity_min = 400.0
-initial_velocity_max = 500.0
+initial_velocity_min = 600.0
+initial_velocity_max = 700.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
+damping_min = 800.0
+damping_max = 800.0
 angle_max = 360.0
 scale_min = 0.1
 scale_curve = SubResource("CurveTexture_3q5ys")
@@ -54,7 +56,6 @@ position = Vector2(96, 16)
 
 [node name="RayCast2D" type="RayCast2D" parent="Barrel/RayCasts"]
 rotation = -0.122173
-scale = Vector2(1, 1)
 target_position = Vector2(6000, 0)
 collision_mask = 5
 collide_with_areas = true
@@ -90,7 +91,6 @@ collide_with_areas = true
 
 [node name="RayCast2D7" type="RayCast2D" parent="Barrel/RayCasts"]
 rotation = 0.122173
-scale = Vector2(1, 1)
 target_position = Vector2(6000, 0)
 collision_mask = 5
 collide_with_areas = true
@@ -98,9 +98,10 @@ collide_with_areas = true
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Barrel"]
 material = SubResource("CanvasItemMaterial_bic0f")
 emitting = false
+amount = 16
 process_material = SubResource("ParticleProcessMaterial_60c4s")
 texture = ExtResource("2_vi5r6")
-lifetime = 0.2
+lifetime = 0.5
 one_shot = true
 explosiveness = 0.9
 

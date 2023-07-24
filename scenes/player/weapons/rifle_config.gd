@@ -8,3 +8,5 @@ func _ready():
 	dmg = Global.dmg[weapon]
 	is_auto = true
 	raycasts = [$Barrel/RayCast2D as RayCast2D]
+	tremor = 0.2
+	knockback_speed = 50

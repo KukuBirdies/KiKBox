@@ -1,6 +1,7 @@
 extends Node2D
 
 signal ray_fired(dmg: int, ray_hit_info: RayHitInfo)
+signal knockbacked(speed: float, rel_dir: Vector2)
 
 @export var Pistol: PackedScene
 @export var Rifle: PackedScene
@@ -21,7 +22,6 @@ var raycasts: Array[RayCast2D]
 	Global.Weapons.SHOTGUN: Shotgun
 }
 
-
 func config_for(weapon: Global.Weapons):
 	if weapon_scene:
 		weapon_scene.queue_free()
@@ -37,10 +37,14 @@ func config_for(weapon: Global.Weapons):
 	assert(self.player_gun_offset != 0)
 	# Note that the self. here are optional, mainly for differentiating
 	# self.weapon from the weapon argument
+	
+	weapon_scene.connect("knockbacked", _on_weapon_knockbacked)
 
 func fire():
 	# Called from AnimationPlayer
 	var ray_hit_infos = weapon_scene.fire()
 	for ray_hit_info in ray_hit_infos:
 		emit_signal("ray_fired", dmg, ray_hit_info)
-		
+
+func _on_weapon_knockbacked(speed: float):
+	emit_signal("knockbacked", speed, to_global(Vector2.LEFT)-global_position)
