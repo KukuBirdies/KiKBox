@@ -28,8 +28,6 @@ func facing() -> void:
 func _physics_process(_delta: float) -> void:
 	if alive:
 		facing()
-	
-	
 
 
 func shoot() -> void: 
@@ -57,3 +55,9 @@ func _on_health_manager_died() -> void:
 	alive = 0
 	timer.stop()
 	
+
+
+func _on_bullethell_room_one_body_entered(body: Node2D) -> void:
+	if body is Player: 
+		timer.start()
+		print("hi_")

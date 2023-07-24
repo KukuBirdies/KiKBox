@@ -615,8 +615,8 @@ physics_layer_1/collision_layer = 8
 physics_layer_1/collision_mask = 10
 sources/0 = SubResource("TileSetAtlasSource_nkuk6")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vautm"]
-radius = 572.008
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ba3yr"]
+size = Vector2(1987, 1834)
 
 [node name="BulletHellRoom" type="Node2D"]
 script = ExtResource("1_56x14")
@@ -642,7 +642,7 @@ layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(-655353, 1310720, 5, 458774, 1310720, 5, 393222, 1310720, 5, -196605, 1310720, 5, 393212, 1507328, 11, 327680, 917504, 17, 327683, 917504, 17, -1507299, 1179648, 6, -1376202, 1179648, 6, -786377, 1179648, 6, -327651, 1179648, 6, -65488, 1179648, 6, 720925, 1179648, 6, 1376285, 1179648, 6, 1703975, 1179648, 6, 1507383, 1179648, 6, 655416, 1179648, 6, 1507374, 1179648, 6, 983097, 1179648, 6, -1048548, 1179648, 6, -1441749, 1179648, 6)
 
 [node name="Player" parent="." instance=ExtResource("2_s1e0v")]
-position = Vector2(5494, -1950)
+position = Vector2(2065, 142)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-1, -29)
@@ -668,8 +668,8 @@ position = Vector2(796, 176)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bullethell_room_one"]
-position = Vector2(134, -130)
-shape = SubResource("CircleShape2D_vautm")
+position = Vector2(-191.5, 86)
+shape = SubResource("RectangleShape2D_ba3yr")
 
 [node name="MachineGun" parent="." instance=ExtResource("5_k1l1x")]
 position = Vector2(981, -407)
@@ -694,3 +694,6 @@ position = Vector2(1643, -2882)
 
 [node name="MachineGun4" parent="." instance=ExtResource("5_k1l1x")]
 position = Vector2(4275, -4782)
+
+[connection signal="body_entered" from="bullethell_room_one" to="MachineGun" method="_on_bullethell_room_one_body_entered"]
+[connection signal="body_entered" from="bullethell_room_one" to="MachineGun2" method="_on_bullethell_room_one_body_entered"]
